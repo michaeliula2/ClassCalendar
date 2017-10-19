@@ -1,6 +1,7 @@
 <!-- Load the Polymer.Element base class -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/scheduler-component/scheduler-component.html">
 
 <dom-module id="my-new-view">
   <!-- Defines the element's style and local DOM -->
@@ -8,13 +9,25 @@
     <style>
       :host {
         display: block;
-
         padding: 16px;
       }
     </style>
 
     <h1>New view</h1>
     <paper-checkbox>Ready to deploy!</paper-checkbox>
+
+     <scheduler-component
+      default-view="month"
+          editable week-numbers
+          max-time="18:00:00" min-time="07:00:00"
+          event-color="#8e44ad"
+          text-color="#ecf0f1"
+          events='[
+            {"title" : "event1","start" : "2017-08-06"},
+            {"title" : "event2","start" : "2017-08-12","end" : "2017-08-14"},
+            {"title" : "event3","start" : "2017-08-15T12:30:00","allDay" :false}]'
+            header='{"center":"title","left":"prev,next,today","right":"month,agendaWeek,agendaDay"}'>
+  </scheduler-component>
   </template>
   <script>
     // Your new element extends the Polymer.Element base class
