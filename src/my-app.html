@@ -31,18 +31,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-primary-color: #002147;
+        --app-secondary-color: #ddb93a;
 
         display: block;
       }
+
 
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
 
       app-header {
-        color: #fff;
+        color: #ddb93a;
         background-color: var(--app-primary-color);
       }
 
@@ -54,16 +55,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0 20px;
       }
 
+
+
       .drawer-list a {
         display: block;
         padding: 0 16px;
         text-decoration: none;
-        color: var(--app-secondary-color);
+        color: #ddb93a;
         line-height: 40px;
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: #ddb93a;
         font-weight: bold;
       }
     </style>
@@ -88,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="view1" href="[[rootPath]]view1">View One</a>
           <a name="view2" href="[[rootPath]]view2">View Two</a>
           <a name="view3" href="[[rootPath]]view3">View Three</a>
-          <a name="new-view" href="/new-view">New View </a>
+          <a name="calendar" href="/new-view">Calendar</a>
         </iron-selector>
       </app-drawer>
 

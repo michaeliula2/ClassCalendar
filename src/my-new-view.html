@@ -1,6 +1,6 @@
 <!-- Load the Polymer.Element base class -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+
 <link rel="import" href="../bower_components/scheduler-component/scheduler-component.html">
 
 <dom-module id="my-new-view">
@@ -11,17 +11,24 @@
         display: block;
         padding: 16px;
       }
+
+    
+  
     </style>
 
-    <h1>New view</h1>
-    <paper-checkbox>Ready to deploy!</paper-checkbox>
+    <h1>Tyler Hall Calendar</h1>
+    
 
      <scheduler-component
       default-view="month"
           editable week-numbers
-          max-time="18:00:00" min-time="07:00:00"
+          all-day-slot=true
+          all-day-text="All Day"
+          max-time="21:00:00" min-time="07:00:00"
+          hidden-days='[0, 6]'
           event-color="#8e44ad"
-          text-color="#ecf0f1"
+          text-color="#ddb93a"
+          scroll-time="6:35"
           events='[
             {"title" : "event1","start" : "2017-08-06"},
             {"title" : "event2","start" : "2017-08-12","end" : "2017-08-14"},
