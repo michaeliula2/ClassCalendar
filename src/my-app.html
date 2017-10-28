@@ -26,6 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="my-view2.html">
 <link rel="lazy-import" href="my-view3.html">
 <link rel="lazy-import" href="my-view404.html">
+<link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
 
 <dom-module id="my-app">
   <template>
@@ -37,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-
+      
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
@@ -45,6 +46,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app-header {
         color: #ddb93a;
         background-color: var(--app-primary-color);
+        font-family: 'Cinzel', serif;
+        text-align: right;
       }
 
       app-header paper-icon-button {
@@ -61,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 0 16px;
         text-decoration: none;
-        color: #ddb93a;
+        color: var(--app-secondary-color);
         line-height: 40px;
       }
 
@@ -101,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>My App</div>
+            <div main-title>The University <br>of Rhode Island</div>
           </app-toolbar>
         </app-header>
 
