@@ -2,57 +2,71 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
 <link rel="import" href="../bower_components/scheduler-component/scheduler-component.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
 
 <dom-module id="my-new-view">
-  <!-- Defines the element's style and local DOM -->
-  <template>
-    <style>
-      :host {
-        display: block;
-        padding: 16px;
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+          :host {
+            display: block;
+            padding: 16px;
+          }
 
-        
-      }
+          h1{
+              color: #ddb93a;
+              font-family: 'Cinzel', serif;
+              font-style: none;
+            }
 
-      h1{
-          color: #ddb93a;
-          font-family: 'Cinzel', serif;
-          font-style: none;
-        }
+        </style>
 
+        <h1>Tyler Hall Calendar</h1>
 
-  
-    </style>
-
-    <h1>Tyler Hall Calendar</h1>
-
-    
-
-     <scheduler-component
-      default-view="month"
-          editable week-numbers
-          all-day-slot=true
-          all-day-text="All Day"
-          max-time="21:00:00" min-time="07:00:00"
-          hidden-days='[0, 6]'
-          event-color="#8e44ad"
-          text-color="#ddb93a"
-          scroll-time="6:35"
-          events='[
-            {"title" : "event1","start" : "2017-08-06"},
-            {"title" : "event2","start" : "2017-08-12","end" : "2017-08-14"},
-            {"title" : "event3","start" : "2017-08-15T12:30:00","allDay" :false}]'
+        <scheduler-component
+            default-view="agendaWeek"
+            editable week-numbers timezone="local"
+            all-day-slot=true
+            all-day-text="All Day"
+            max-time="21:00:00" min-time="07:00:00"
+            hidden-days='[0, 6]'
+            event-color="#8e44ad"
+            text-color="#ddb93a"
+            scroll-time="6:35"
+            events='[[calevents]]'
+            on-view-render="updateEvents"
             header='{"center":"title","left":"prev,next,today","right":"month,agendaWeek,agendaDay"}'>
-  </scheduler-component>
-  </template>
-  <script>
-    // Your new element extends the Polymer.Element base class
-    class MyNewView extends Polymer.Element {
-      static get is() { return 'my-new-view'; }
-    }
-    //Now, register your new custom element so the browser can use it
-    customElements.define(MyNewView.is, MyNewView);
-  </script>
+        </scheduler-component>
+        <iron-ajax
+            id="requestEvents"
+            url="http://127.0.0.1:3000/calendar/rm055/week/"
+            params=''
+            handle-as="json"
+            on-response="handleResponse">
+        </iron-ajax>
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class MyNewView extends Polymer.Element {
+            static get is() { return 'my-new-view'; }
+
+            handleResponse (data) {
+                this.calevents = data.detail.response;
+            }
+            
+            updateEvents (e, data) {
+                let range = data.view.dateProfile.activeUnzonedRange
+                let dispSize = data.view.dateProfile.currentRangeUnit
+                this.$.requestEvents.url='http://127.0.0.1:3000/calendar/rm055/';
+                this.$.requestEvents.params={start: new Date(range.startMs).toISOString(),
+                                            end: new Date(range.endMs).toISOString()};
+                this.$.requestEvents.generateRequest();
+            }
+        }
+        
+        //Now, register your new custom element so the browser can use it
+        customElements.define(MyNewView.is, MyNewView);
+    </script>
 </dom-module>
