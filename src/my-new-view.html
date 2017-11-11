@@ -52,6 +52,12 @@
         class MyNewView extends Polymer.Element {
             static get is() { return 'my-new-view'; }
 
+            static get properties() {
+                return {
+                    calevents: Array,
+                }
+            }
+
             handleResponse (data) {
                 this.calevents = data.detail.response;
             }
